@@ -1,0 +1,83 @@
+
+.bg1{
+  background-color:rgb(226, 226, 240);
+    height:100vh;
+
+}
+
+
+
+a{
+  text-decoration:none;
+}
+
+a:hover{
+  text-decoration: underline;
+}
+
+
+
+
+
+.form-container{
+  position:fixed;
+  left:25%;
+
+  padding:10px;
+  }
+
+   
+
+ 
+  .form-container input[type=text]:focus, .form-container input[type=password]:focus , input[type=name]:focus {
+    width: 100%;
+    
+    background-color:rgb(226, 226, 240);
+    outline:none;
+  }
+  
+
+
+  
+  
+
+
+  
+
+  span{
+    cursor: pointer;
+  }
+
+
+  .input-field{
+    display:flex;
+    
+
+  }
+  
+  button{
+    background-color: rgb(244, 44, 84);
+    border:hidden;
+  }
+  
+  
+  
+  form ,b{
+    text-align:left;
+  }
+
+  div ,button{
+    text-align: center;
+  }
+
+  p ,a{
+    text-align:center;
+  }
+
+
+  .cn1{
+    height:50vh;
+  }
+
+
+  
