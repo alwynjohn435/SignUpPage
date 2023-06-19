@@ -5,15 +5,22 @@ import { eye } from "react-icons-kit/feather/eye";
 
 import "./formmystyle.css";
 export default function Signup() {
+  
   const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  const[emailrequired,setEmailRequired]= useState("");
+  const[emailmessage,setEmailMessage]= useState("");
+  const[ signupmessage , setSignupMessage]= useState("");
   const [type, setType] = useState("password");
   const [icon, setIcon] = useState(eyeOff);
   const [iserror, setIserror] = useState("");
 
   const [confirmpassword, setConfirmPassword] = useState("");
+  
   const [password, setPassword] = useState("");
+  const[passwordrequired,setPasswordRequired]=useState("");
   const [showlogin, setShowlogin] = useState(false);
+
+
 
   function handleToggle() {
     if (type === "password") {
@@ -26,17 +33,35 @@ export default function Signup() {
   };
 
   function emailValidation (e) {
-    e.preventDefault();
+    e.preventDefault(); 
     const regEx = /^[A-Za-z._]{3,}@[A_Za-z]{3,}[.]{1}[A-Za-z.]{2,6}$/;
     if (regEx.test(email)) {
-      setMessage("");
+      setEmailMessage("");
       
     } else {
-      setMessage("email is not valid");
+      setEmailMessage("email not valid");
 
      
     }
+
+
+if(email===""){
+  setEmailRequired("email is required");
+}else{
+  setEmailRequired("");
+} 
+
+if(password===""){
+  setPasswordRequired("password is required");
+}else{
+  setPasswordRequired("");
+}
+
+
+
   };
+
+
 
 
   function handleOnChange (e) {
@@ -44,24 +69,34 @@ export default function Signup() {
   };
 
 
+
+
+
+
   function handleSignup (e) {
     e.preventDefault();
     const regEx = /^[A-Za-z._]{3,}@[A_Za-z]{3,}[.]{1}[A-Za-z.]{2,6}$/;
     if (regEx.test(email)) {
-      setMessage("");
+      setSignupMessage("");
     } else {
-      setMessage("email is not valid");
+      setSignupMessage("email is not valid");
     }
 
     if (password != confirmpassword) {
       setIserror("confirm password and password doesnt match");
+
      
     } else {
       setIserror("");
       
     }
+
+   
+    
+  
   };
 
+  
   
 
   
@@ -75,47 +110,57 @@ export default function Signup() {
                 <form action="" onSubmit={emailValidation} className="cn1">
                   <h5 className="text-dark p-3 text-center mx-5">
                     LogIn
-                    <span className="mx-5" onClick={() => setShowlogin(false)}>
-                      SignUp
-                    </span>
+                    
                   </h5>
-
+             
                   <div className="mb-4 input-field">
                     <input
-                      type="email"
+                      type="text"
                       name="email"
                       className="form-control place"
                       placeholder="Email address"
                       value={email}
                       onChange={handleOnChange}
-                      required
+               
                     />
+               
                   </div>
-                 <span className="text-danger">{message}</span> 
+                 <span className="text-danger">{emailrequired}<br/></span> 
+          <span className="text-danger">{emailmessage}</span>
                   <div className="mb-4 input-field">
                     <input
                       type={type}
                       name="password"
                       className="form-control place"
                       placeholder="password"
-                      required
+              
                       maxLength={8}
                       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+        value={password}
+        onChange={(e)=>setPassword(e.target.value)}
                       title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
                     />
+                      
                     <span onClick={handleToggle}>
                       <Icon icon={icon} />
                     </span>
+                    
                   </div>
-
+                  <span className="text-danger">{passwordrequired}</span>
                   <div>
                     <button
                       type="submit"
-                      className=" mx-4 w-50 rounded p-2 text-white mb-5"
+                      className=" mx-4 w-50 rounded p-2 text-white mb-"
                     >
                       Login
                     </button>
                     <br />
+                    <p onClick={() => setShowlogin(false)} className="mt-3">
+                    <a href="#" className="text-danger">
+                      Dont have an account yet? Sign Up
+                    </a>
+                  </p>
+             
                   </div>
                   
                 </form>
@@ -153,7 +198,7 @@ export default function Signup() {
                     value={email}
                     onChange={handleOnChange}
                   />
-   <span className="text-danger">{message}</span><br/>  
+   <span className="text-danger">{signupmessage}</span><br/>  
                   <b>Password</b>
                   <div className="mb-4 input-field">
                     <input
@@ -161,14 +206,18 @@ export default function Signup() {
                       className="form-control place mt-2"
                       placeholder="Enter Password"
                       name="psw"
-                      required
-                      maxLength={8}
+              
+                  
                       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                      title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+maxLength={8}
                       value={password}
-                      onChange={(e) => setPassword(e.target.value)}
+                      onChange={(e)=>setPassword(e.target.value)}
+                       
                     />
+                 
                   </div>
+                 
+               
                   <b>Confirm Password</b>
                   <div className="mb-4 input-field">
                     <input
@@ -176,7 +225,7 @@ export default function Signup() {
                       className="form-control place mt-2"
                       name="confirmpass"
                       placeholder="Confirm Password"
-                      required
+                    
                       maxLength={8}
                       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                       value={confirmpassword}
@@ -184,12 +233,12 @@ export default function Signup() {
                       
                     />
                     <span className="mt-2" onClick={handleToggle}>
-                      <Icon icon={icon} />
+                      <Icon icon={icon} size={25}/>
                     </span>
                   </div>
-                  <span className="text-danger">{iserror}</span>
+                  <span className="text-danger">{iserror}</span><br/>
                   <div>
-                    <button className="mx-4 w-50 rounded p-2 text-white">
+                    <button className="mx-5 my-4 w-50 rounded p-2 text-white">
                       Sign Up
                     </button>
                   </div>

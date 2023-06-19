@@ -51,8 +51,6 @@ a:hover{
 
   .input-field{
     display:flex;
-    
-
   }
   
   button{
@@ -62,21 +60,21 @@ a:hover{
   
   
   
-  form ,b{
+  form , b{
     text-align:left;
   }
 
-  div ,button{
+  div , button{
     text-align: center;
   }
 
-  p ,a{
+  p , a{
     text-align:center;
   }
 
 
   .cn1{
-    height:50vh;
+    height:70vh;
   }
 
 
